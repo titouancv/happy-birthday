@@ -1,73 +1,120 @@
-# React + TypeScript + Vite
+# 🎂 Happy Birthday - Interactive Candles
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive and animated web application to celebrate birthdays! Blow out the virtual candles by hovering over them and discover a colorful message.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-18-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Vite](https://img.shields.io/badge/Vite-6-purple)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-cyan)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- 🕯️ **Animated candles** with realistic flickering and pulsing flames
+- 🎨 **Random colors** for each revealed letter
+- 🖱️ **Hover interaction** - blow out candles by hovering your mouse
+- 🔄 **Reset button** to relight all candles
+- 📱 **Responsive design** and centered layout
+- ⚡ **Smooth animations** with Tailwind CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Installation
 
-## Expanding the ESLint configuration
+```bash
+# Clone the repository
+git clone https://github.com/titouancv/happy-birthday.git
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Install dependencies
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start the development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🏗️ Project Architecture
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The project follows a modular architecture with separation of concerns:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── components/
+│   ├── Candle.tsx           # Main orchestrator component
+│   ├── LitCandle.tsx        # Lit candle with all its elements
+│   ├── Flame.tsx            # Flame animation
+│   ├── Wick.tsx             # Candle wick
+│   ├── CandleBody.tsx       # Candle body with wax drips
+│   ├── CandleBase.tsx       # Candle base
+│   ├── LetterBlock.tsx      # Letter block (blown out candle)
+│   ├── CandleList.tsx       # List of candles
+│   ├── BirthdayCake.tsx     # Main container
+│   └── ResetButton.tsx      # Reset button
+├── hooks/
+│   └── useCandleManager.ts  # Custom hook for candle management
+├── utils/
+│   ├── candleHelpers.ts     # Utility functions for candles
+│   └── randomValue.ts       # Random value generation
+└── App.tsx                  # Application entry point
+```
+
+## 🎯 Main Components
+
+### Candle
+
+Main component that manages the state (lit/blown out) of a candle and displays either a `LitCandle` or a `LetterBlock`.
+
+### LitCandle
+
+Composes a lit candle with:
+
+- Animated flame (flickering, pulsing)
+- Wick
+- Candle body with wax drips
+- Base
+
+### LetterBlock
+
+Displays a letter with a random color when the candle is blown out.
+
+### useCandleManager
+
+Custom hook that encapsulates all business logic:
+
+- Candle state management
+- Detection of all blown out candles
+- Reset functionality
+
+## 🛠️ Technologies Used
+
+- **React 18** - UI library
+- **TypeScript** - Static typing
+- **Vite** - Ultra-fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **CSS Animations** - Custom animations for flame effects
+
+## 📝 Available Scripts
+
+```bash
+npm run dev      # Start the development server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Lint the code
+```
+
+## 🎨 Customization
+
+You can easily customize:
+
+- Displayed text: modify `'Happy Birthday'` in `App.tsx`
+- Letter colors: modify the HSL logic in `LetterBlock.tsx`
+- Animations: adjust durations in `Candle.tsx`
+- Candle size: modify values in `randomValue()`
+
+## 📄 License
+
+MIT
+
+## 👤 Author
+
+Titouan - [GitHub](https://github.com/titouancv)
+
+---
+
+Made with ❤️ and React
